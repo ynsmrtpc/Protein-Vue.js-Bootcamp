@@ -2,7 +2,7 @@
   <div class="container">
     <a
       class="github-link"
-      href="https://github.com/ynsmrtpc/dog-ceo-app"
+      href="https://github.com/ynsmrtpc/Protein-Vue.js-Bootcamp/tree/master/3-Week/dog-ceo-app"
       target="_blank"
       rel="noreferrer"
     >
