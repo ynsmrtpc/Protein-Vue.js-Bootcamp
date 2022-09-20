@@ -7,7 +7,9 @@ const filteredDatas = ref();
 
 async function getStudents() {
 	const students = await axios
-		.get("src/assets/data/students.json")
+		.get(
+			"https://raw.githubusercontent.com/Front-End-Bootcamp/vue-bootcamp/main/homework%201/data.json"
+		)
 		.then((student) => student.data);
 	return students;
 }
