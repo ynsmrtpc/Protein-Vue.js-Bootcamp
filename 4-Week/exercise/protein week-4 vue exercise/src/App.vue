@@ -5,6 +5,7 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 
 const data = ref([]);
+const mostCommonCharacters = ref([]);
 const character = ref("");
 
 const Characters = async () => {
@@ -22,10 +23,18 @@ const findTheCharacterName = (name) => {
 
 onMounted(async () => {
   data.value = await Characters();
+  data.value.forEach((character) => {
+    if (mostCommonCharacters.value.length < 15) {
+      mostCommonCharacters.value.push(character.name);
+    }
+  });
 });
 </script>
 
 <template>
-  <Input @setName="findTheCharacterName" />
+  <Input
+    @setName="findTheCharacterName"
+    :mostCommonCharacters="mostCommonCharacters"
+  />
   <Cards :character="character" />
 </template>

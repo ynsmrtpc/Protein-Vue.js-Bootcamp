@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(["names"]);
+const props = defineProps(["mostCommonCharacters"]);
 const emit = defineEmits(["activeName"]);
 function activeCharacter(name) {
   emit("activeName", name);
@@ -8,7 +8,7 @@ function activeCharacter(name) {
 
 <template>
   <div class="buttons">
-    <template v-for="name in props.names">
+    <template v-for="name in props.mostCommonCharacters">
       <button @click="activeCharacter(name)" class="button">{{ name }}</button>
     </template>
   </div>

@@ -4,20 +4,14 @@ import ExampleButtons from "./ExampleButtons.vue";
 
 const value = ref("");
 const emit = defineEmits(["setName"]);
-const names = [
-  "Harry Potter",
-  "Ron Weasley",
-  "Hermione Granger",
-  "Draco Malfoy",
-  "Minerva McGonagall",
-];
+const props = defineProps(["mostCommonCharacters"]);
+
 const inputHandler = (name) => {
   emit("setName", name);
-  console.log(name);
 };
 
 function useName(name) {
-  value.value = name;
+  inputHandler(name);
 }
 </script>
 
@@ -34,5 +28,8 @@ function useName(name) {
       "
     />
   </div>
-  <ExampleButtons :names="names" @active-name="useName" />
+  <ExampleButtons
+    :mostCommonCharacters="mostCommonCharacters"
+    @active-name="useName"
+  />
 </template>

@@ -12,7 +12,6 @@ const props = defineProps(["character"]);
 
 <style lang="scss" scoped>
 .container {
-  margin: 7rem;
   display: flex;
   align-items: center;
   justify-content: center;
