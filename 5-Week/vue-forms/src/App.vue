@@ -4,17 +4,27 @@ import InputText from "./components/InputText.vue";
 import InputMail from "./components/InputMail.vue";
 import { computed } from "@vue/reactivity";
 
-const firstName = ref("");
-const lastName = ref("");
-const email = ref("");
-const reemail = ref("");
-const isValid = ref(null);
+// const firstName = ref("");
+// const lastName = ref("");
+// const email = ref("");
+// const reemail = ref("");
+// const isValid = ref(null);
 
+const registerInfos = ref({
+  firstName: ref(""),
+  lastName: ref(""),
+  email: ref(""),
+  reemail: ref(""),
+  isValid: ref(null),
+});
+console.log(registerInfos.value.firstName);
 async function submitHandler() {
-  isValid.value = computed(() => {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
+  registerInfos.value.isValid = computed(() => {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+      registerInfos.value.email
+    );
   });
-  if (isValid.value.value === true) {
+  if (registerInfos.value.isValid == true) {
     // const result = await fetch("https://jsonplaceholder.typicode.com/posts", {
     //   method: "POST",
     //   body: JSON.stringify({
@@ -24,15 +34,15 @@ async function submitHandler() {
     //   }),
     // }).then((res) => console.log(res));
 
-    localStorage.setItem("name", firstName.value);
-    localStorage.setItem("lastname", lastName.value);
-    localStorage.setItem("email", email.value);
+    localStorage.setItem("name", registerInfos.value.firstName);
+    localStorage.setItem("lastname", registerInfos.value.lastName);
+    localStorage.setItem("email", registerInfos.value.email);
 
-    firstName.value = "";
-    lastName.value = "";
-    email.value = "";
-    reemail.value = "";
-    isValid.value = null;
+    registerInfos.value.firstName = "";
+    registerInfos.value.lastName = "";
+    registerInfos.value.email = "";
+    registerInfos.value.reemail = "";
+    registerInfos.value.isValid = null;
     console.log(
       localStorage.getItem("name"),
       localStorage.getItem("lastname"),
@@ -44,13 +54,27 @@ async function submitHandler() {
 </script>
 
 <template>
-  <small v-if="isValid">Geçerli bir mail adresi giriniz!</small>
+  {{ registerInfos.firstName }} <br />
+  {{ registerInfos.lastName }} <br />
+  {{ registerInfos.email }} <br />
+  {{ registerInfos.reemail }} <br />
+  {{ registerInfos.isValid }} <br />
+  <small v-if="registerInfos.isValid">Geçerli bir mail adresi giriniz!</small>
 
   <form class="forms" @submit.prevent="submitHandler">
-    <InputText v-model:name="firstName" label="First Name"></InputText>
-    <InputText v-model:name="lastName" label="Last Name"></InputText>
-    <InputMail v-model:email="email" label="Email"></InputMail>
-    <InputMail v-model:email="reemail" label="Confirm Email"></InputMail>
+    <InputText
+      v-model:name="registerInfos.firstName"
+      label="First Name"
+    ></InputText>
+    <InputText
+      v-model:name="registerInfos.lastName"
+      label="Last Name"
+    ></InputText>
+    <InputMail v-model:email="registerInfos.email" label="Email"></InputMail>
+    <InputMail
+      v-model:email="registerInfos.reemail"
+      label="Confirm Email"
+    ></InputMail>
     <button type="submit">Gönder</button>
   </form>
 </template>
