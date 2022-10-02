@@ -1,0 +1,23 @@
+body {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 233px;
+    padding: 12px;
+    opacity: .6;
+    margin: 5px;
+}
+
+.inputGroup {
+    text-align: center;
+}
+
+input:hover,
+input:focus {
+    outline: 0 none;
+    opacity: 1;
+}

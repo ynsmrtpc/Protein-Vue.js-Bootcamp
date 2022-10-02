@@ -26,10 +26,21 @@ body {
       box-shadow: rgba(51, 0, 83, 0.233) 0px 30px 50px 8px;
     }
   }
+  &__select {
+    margin: 0 1rem;
+    background-color: #d9d9d9;
+    padding: 18px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    &:focus {
+      outline: 0 none;
+    }
+  }
 }
 
 .card {
-  width: 250px;
+  display: inline-block;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
   text-align: center;
   border-radius: 0.4rem;

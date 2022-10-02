@@ -27,6 +27,10 @@ function useName(name) {
         value = '';
       "
     />
+    <!-- <select class="inputDiv__select">
+      <option :value="name">Name</option>
+      <option :value="house">House</option>
+    </select> -->
   </div>
   <ExampleButtons
     :mostCommonCharacters="mostCommonCharacters"

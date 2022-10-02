@@ -5,15 +5,5 @@ const props = defineProps(["character"]);
 </script>
 
 <template>
-  <template class="container">
-    <Card :character="props.character" />
-  </template>
+  <Card :character="props.character" />
 </template>
-
-<style lang="scss" scoped>
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>

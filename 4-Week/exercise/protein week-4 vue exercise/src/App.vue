@@ -7,6 +7,7 @@ import { onMounted, ref } from "vue";
 const data = ref([]);
 const mostCommonCharacters = ref([]);
 const character = ref("");
+// const characterHouse = ref("");
 
 const Characters = async () => {
   const result = await axios
@@ -17,9 +18,15 @@ const Characters = async () => {
 
 const findTheCharacterName = (name) => {
   character.value = data.value.filter(
-    (character) => character.name.toLowerCase() === name.toLowerCase()
+    (character) => character.name.toLowerCase() === name.toLowerCase().trim()
   );
 };
+
+// const findTheCharacterHouse = (name) => {
+//   characterHouse.value = data.value.filter(
+//     (character) => character.house.toLowerCase() === name.toLowerCase().trim()
+//   );
+// };
 
 onMounted(async () => {
   data.value = await Characters();
@@ -36,5 +43,7 @@ onMounted(async () => {
     @setName="findTheCharacterName"
     :mostCommonCharacters="mostCommonCharacters"
   />
+
   <Cards :character="character" />
+  <!-- <Cards :character="characterHouse" /> -->
 </template>

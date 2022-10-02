@@ -8,7 +8,11 @@ const props = defineProps(["character"]);
       <h3>{{ character.name }}</h3>
     </div>
 
-    <img class="card__image" :src="character.image" :alt="character.name" />
+    <img
+      class="card__image"
+      :src="character.image"
+      :alt="character.name.toLowerCase().replace(' ', '_') + '_photo'"
+    />
 
     <div class="card__footer">
       <li class="items">
