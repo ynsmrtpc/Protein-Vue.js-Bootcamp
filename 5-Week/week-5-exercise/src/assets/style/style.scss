@@ -51,14 +51,36 @@ body {
     border: none;
     border-radius: 1rem;
     &:hover {
-      background-color: #5f66e5;
+      background-color: #5e65e6;
       cursor: pointer;
     }
+  }
+  &__loginSituation {
+    background-color: #5e65e680;
+    color: #fafafa;
+    text-shadow: 2px 1px 2px #8b54ff;
+    border-radius: 0.7rem;
+    padding: 0.5rem;
   }
 }
 
 .signIn {
   background-color: #6066ff;
+}
+
+.invalid {
+  position: absolute;
+  content: "\00D7";
+  transform: translate(125px, -43px);
+  font-size: 1.3rem;
+  color: rgba(248, 136, 136, 0.6);
+}
+.valid {
+  position: absolute;
+  content: "\2714";
+  transform: translate(120px, -43px);
+  font-size: 1.3rem;
+  color: rgba(91, 242, 9, 0.6);
 }
 
 .gg-eye {
