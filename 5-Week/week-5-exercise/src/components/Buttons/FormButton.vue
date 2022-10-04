@@ -4,7 +4,7 @@ const emit = defineEmits("showLogin");
 </script>
 
 <template>
-  <button :class="'form__button' + ' ' + props.class" :type="type">
-    {{ name }}
+  <button :class="'form__button' + ' ' + props.class" :type="props.type">
+    {{ props.name }}
   </button>
 </template>

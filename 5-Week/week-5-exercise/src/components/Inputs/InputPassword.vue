@@ -38,6 +38,7 @@ const passwordHandler = (event) => {
       :value="password"
       :placeholder="placeholder"
     />
+
     <input
       v-else
       class="form__input"
@@ -47,10 +48,13 @@ const passwordHandler = (event) => {
       :value="password"
       :placeholder="placeholder"
     />
+
     <i class="gg-eye" id="showPassword" @click="showPassword = !showPassword"></i>
+
     <p v-if="!isValid">
       <small class="invalid">&#215;</small>
     </p>
+
     <p v-else>
       <small class="valid">&#10004;</small>
     </p>

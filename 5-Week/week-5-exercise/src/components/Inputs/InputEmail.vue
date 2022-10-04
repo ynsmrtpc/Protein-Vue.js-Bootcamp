@@ -28,9 +28,11 @@ let isValid = computed(() => {
       @input="emailHandler"
       placeholder="E-mail"
     />
+
     <p v-if="!isValid">
       <small class="invalid">&#215;</small>
     </p>
+
     <p v-else>
       <small class="valid">&#10004;</small>
     </p>

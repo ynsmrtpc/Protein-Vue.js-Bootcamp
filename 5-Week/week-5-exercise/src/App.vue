@@ -139,4 +139,12 @@ const loginHandler = () => {
 
     <FormButton name="LOGIN" class="signIn" type="submit" />
   </form>
+
+  <a
+    class="github"
+    href="https://github.com/ynsmrtpc/Protein-Vue.js-Bootcamp/tree/main/5-Week/week-5-exercise"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Go to Github Page</a
+  >
 </template>

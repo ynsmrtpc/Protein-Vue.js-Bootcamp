@@ -35,9 +35,11 @@ const phoneHandler = (event) => {
       placeholder="Phone"
       @keyup="validatePhone"
     />
+
     <p v-if="!isValid">
       <small class="invalid">&#215;</small>
     </p>
+
     <p v-else>
       <small class="valid">&#10004;</small>
     </p>
