@@ -4,16 +4,19 @@
   box-sizing: border-box;
   list-style: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.5s;
 }
 body {
   background-color: #e3e3e3;
 }
+
 #app {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .form {
+  position: relative;
   margin-top: 10rem;
   text-align: center;
   padding: 1rem;
@@ -22,6 +25,9 @@ body {
   &__headline {
     color: #252eff;
     margin-bottom: 3rem;
+  }
+  .dark > &__headline {
+    color: #fafafa;
   }
 
   &__divider {
@@ -40,6 +46,9 @@ body {
       border: 3px solid #5f66e5;
     }
   }
+  .dark > &__input {
+    background-color: #bb86fc;
+  }
 
   &__button {
     display: block;
@@ -55,6 +64,7 @@ body {
       cursor: pointer;
     }
   }
+
   &__loginSituation {
     background-color: #5e65e680;
     color: #fafafa;
@@ -74,13 +84,32 @@ body {
   transform: translate(125px, -43px);
   font-size: 1.3rem;
   color: rgba(248, 136, 136, 0.6);
+  user-select: none;
 }
 .valid {
   position: absolute;
   content: "\2714";
   transform: translate(125px, -39px);
-  font-size: 1rem;
   color: rgba(91, 242, 9, 0.6);
+  user-select: none;
+}
+
+.darkLight {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background-color: transparent;
+}
+
+.dark {
+  background-color: #121212;
+}
+
+.dark > .signIn {
+  background-color: #bb86fc;
 }
 
 .gg-eye {

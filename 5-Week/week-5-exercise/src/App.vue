@@ -7,15 +7,32 @@ import InputName from "./components/Inputs/InputName.vue";
 import InputPassword from "./components/Inputs/InputPassword.vue";
 import InputPhone from "./components/Inputs/InputPhone.vue";
 
-const showLogin = ref(true);
+const showLogin = ref(true); // login bilgisini gösterir
+// inputlardaki verileri ref aracılığla tutuyoruz
 const fullName = ref("");
 const email = ref("");
 const phone = ref("");
 const password = ref("");
 const confirmPassword = ref("");
-const isSuccess = ref(false);
-const loginSituation = ref("");
+const isSuccess = ref(false); // hata ya da başarı mesajını gösterip gizlemek için
+const loginSituation = ref(""); // ekrana hata ya da başarı mesajı yazmak için
+// karanlık ve aydınlık mod arasında geçiş yapmak için
+const dark_light = ref("🌚");
+const pageMode = ref("");
 
+// karanlık ve aydınlık modu değiştiren fonksiyon
+const modeToggle = () => {
+  if (dark_light.value === "🌚") {
+    dark_light.value = "☀️";
+    pageMode.value = "dark";
+  } else if (dark_light.value === "☀️") {
+    dark_light.value = "🌚";
+    pageMode.value = "";
+  }
+};
+
+// register form'daki bilgileri kontrol eder ve son validasyon işlemlerini yapar(diğer validasyon işlemleri ilgili componentlerin içinde yapılmıştır)
+// eğer bilgiler doğruysa localstorage'a verileri yazar
 const registerHandler = () => {
   let data;
   if (localStorage.getItem("userDetails") === null) {
@@ -59,6 +76,7 @@ const registerHandler = () => {
   confirmPassword.value = "";
 };
 
+// login form'daki input değerlerini localStroge'daki ilgili veri ile karşılaştırır, başarı veya hata mesajı yazdırır
 const loginHandler = () => {
   let user = JSON.parse(localStorage.getItem("userDetails"));
   const userIndex = user.email.indexOf(email.value);
@@ -78,7 +96,11 @@ const loginHandler = () => {
 </script>
 
 <template>
-  <form v-if="showLogin" class="form" @submit.prevent="registerHandler">
+  <form v-if="showLogin" class="form" @submit.prevent="registerHandler" :class="' ' + pageMode">
+    <button class="darkLight" @click="modeToggle" type="button">
+      {{ dark_light }}
+    </button>
+
     <h1 class="form__headline">Register</h1>
 
     <div v-if="isSuccess" class="form__loginSituation">
@@ -90,13 +112,22 @@ const loginHandler = () => {
     <InputPhone v-model:phone="phone" />
     <InputPassword v-model:password="password" placeholder="Password" />
     <InputPassword v-model:password="confirmPassword" placeholder="Confirm Password" />
+
     <div class="form__divider"></div>
+    <!-- buttonlar ve inputlar arasına boşluk koymak için  -->
+
     <FormButton name="Register" type="submit" />
     <FormButton name="Have account? Sign In" class="signIn" @click="showLogin = !showLogin" type="button" />
   </form>
 
-  <form v-else class="form" @submit.prevent="loginHandler">
+  <form v-else class="form" @submit.prevent="loginHandler" :class="' ' + pageMode">
+    <button class="darkLight" @click="modeToggle" type="button">
+      {{ dark_light }}
+    </button>
+
     <i class="gg-backspace" @click="showLogin = !showLogin"></i>
+    <!-- register sayfasına geri dönmek için -->
+
     <h1 class="form__headline">Login</h1>
 
     <div v-if="isSuccess" class="form__loginSituation">
@@ -105,6 +136,7 @@ const loginHandler = () => {
 
     <InputEmail v-model:email="email" />
     <InputPassword v-model:password="password" placeholder="Password" />
+
     <FormButton name="LOGIN" class="signIn" type="submit" />
   </form>
 </template>
