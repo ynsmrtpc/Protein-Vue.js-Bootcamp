@@ -3,11 +3,41 @@ import { ref } from "vue";
 
 const props = defineProps(["password", "placeholder"]);
 const emit = defineEmits(["update:password"]);
-
+const password = ref("");
 const showPassword = ref(false);
+const isValid = ref(null);
+
+// function validatePassword() {
+//   const validationRegex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+//   if (
+//     password.value.length > 8 &&
+//     /\d/.test(password.value) === true &&
+//     /\[A-Z]/.test(password.value) === true &&
+//     validationRegex.test(password.value) === true
+//   ) {
+//     isValid.value = true;
+//   } else {
+//     isValid.value = false;
+//   }
+// }
 
 const passwordHandler = (event) => {
-  emit("update:password", event.target.value);
+  password.value = event.target.value;
+  const validationRegex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+  if (
+    password.value.length > 8 &&
+    /\d/.test(password.value) &&
+    /[A-Z]/.test(password.value) &&
+    validationRegex.test(password.value)
+  ) {
+    isValid.value = true;
+  } else {
+    isValid.value = false;
+  }
+  if (isValid) {
+    emit("update:password", password.value);
+  }
 };
 </script>
 
@@ -31,10 +61,12 @@ const passwordHandler = (event) => {
       :value="password"
       :placeholder="placeholder"
     />
-    <i
-      class="gg-eye"
-      id="showPassword"
-      @click="showPassword = !showPassword"
-    ></i>
+    <i class="gg-eye" id="showPassword" @click="showPassword = !showPassword"></i>
+    <p v-if="!isValid">
+      <small class="invalid">&#215;</small>
+    </p>
+    <p v-else>
+      <small class="valid">&#10004;</small>
+    </p>
   </div>
 </template>

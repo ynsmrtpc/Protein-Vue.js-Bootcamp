@@ -30,7 +30,14 @@ const registerHandler = () => {
 
   if (fullName.value === "" || phone.value === "" || email.value === "" || password.value === "") {
     isSuccess.value = true;
-    loginSituation.value = "Fill in the form correctly!";
+    loginSituation.value = "Tüm alanları doldurmalısınız!";
+    setTimeout(() => {
+      isSuccess.value = false;
+      loginSituation.value = "";
+    }, 2000);
+  } else if (password.value !== confirmPassword.value) {
+    isSuccess.value = true;
+    loginSituation.value = "Parolalar eşleşmiyor!";
     setTimeout(() => {
       isSuccess.value = false;
       loginSituation.value = "";
@@ -57,6 +64,8 @@ const loginHandler = () => {
   const userIndex = user.email.indexOf(email.value);
   if (user.email[userIndex] === email.value && user.password[userIndex] === password.value) {
     loginSituation.value = "Giriş Başarılı!";
+  } else if (password.value !== confirmPassword.value) {
+    loginSituation.value = "Parolalar eşleşmiyor!";
   } else {
     loginSituation.value = "E-mail ya da parolayı kontrol ediniz!";
   }
@@ -96,7 +105,6 @@ const loginHandler = () => {
 
     <InputEmail v-model:email="email" />
     <InputPassword v-model:password="password" placeholder="Password" />
-
     <FormButton name="LOGIN" class="signIn" type="submit" />
   </form>
 </template>

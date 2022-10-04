@@ -1,8 +1,25 @@
 <script setup>
+import { ref } from "vue";
+
 const props = defineProps(["phone"]);
 const emit = defineEmits(["update:phone"]);
+const phone = ref("");
+const isValid = ref(null);
+
+function validatePhone() {
+  const validationRegex = /^\d{10}$/;
+  if (phone.value.match(validationRegex)) {
+    isValid.value = true;
+  } else {
+    isValid.value = false;
+  }
+}
+
 const phoneHandler = (event) => {
-  emit("update:phone", event.target.value);
+  phone.value = event.target.value;
+  if (isValid) {
+    emit("update:phone", phone.value);
+  }
 };
 </script>
 
@@ -16,7 +33,13 @@ const phoneHandler = (event) => {
       :value="phone"
       @input="phoneHandler"
       placeholder="Phone"
-      pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+      @keyup="validatePhone"
     />
+    <p v-if="!isValid">
+      <small class="invalid">&#215;</small>
+    </p>
+    <p v-else>
+      <small class="valid">&#10004;</small>
+    </p>
   </div>
 </template>

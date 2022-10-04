@@ -5,15 +5,15 @@ const props = defineProps(["email"]);
 const emit = defineEmits(["update:email"]);
 const email = ref("");
 
+const emailHandler = async (event) => {
+  email.value = event.target.value;
+  if (isValid) {
+    emit("update:email", email.value);
+  }
+};
 let isValid = computed(() => {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
 });
-if (isValid) {
-  const emailHandler = async (event) => {
-    email.value = event.target.value;
-    emit("update:email", email.value);
-  };
-}
 </script>
 
 <template>
@@ -27,10 +27,10 @@ if (isValid) {
       @input="emailHandler"
       placeholder="E-mail"
     />
-    <p v-if="isValid === false">
+    <p v-if="!isValid">
       <small class="invalid">&#215;</small>
     </p>
-    <p v-if="isValid === true">
+    <p v-else>
       <small class="valid">&#10004;</small>
     </p>
   </div>
