@@ -11,6 +11,7 @@ const emailHandler = async (event) => {
     emit("update:email", email.value);
   }
 };
+
 let isValid = computed(() => {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
 });
