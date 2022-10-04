@@ -48,32 +48,18 @@ const registerHandler = () => {
   if (fullName.value === "" || phone.value === "" || email.value === "" || password.value === "") {
     isSuccess.value = true;
     loginSituation.value = "Tüm alanları doldurmalısınız!";
-    setTimeout(() => {
-      isSuccess.value = false;
-      loginSituation.value = "";
-    }, 2000);
   } else if (password.value !== confirmPassword.value) {
     isSuccess.value = true;
     loginSituation.value = "Parolalar eşleşmiyor!";
-    setTimeout(() => {
-      isSuccess.value = false;
-      loginSituation.value = "";
-    }, 2000);
   } else {
     localStorage.setItem("userDetails", JSON.stringify(data));
     loginSituation.value = "Kayıt Oluşturuldu!";
     isSuccess.value = true;
-    setTimeout(() => {
-      isSuccess.value = false;
-      loginSituation.value = "";
-    }, 2000);
   }
-
-  fullName.value = "";
-  email.value = "";
-  phone.value = "";
-  password.value = "";
-  confirmPassword.value = "";
+  setTimeout(() => {
+    isSuccess.value = false;
+    loginSituation.value = "";
+  }, 2000);
 };
 
 // login form'daki input değerlerini localStroge'daki ilgili veri ile karşılaştırır, başarı veya hata mesajı yazdırır

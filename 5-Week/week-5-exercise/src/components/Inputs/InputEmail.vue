@@ -4,17 +4,25 @@ import { computed, ref } from "@vue/reactivity";
 const props = defineProps(["email"]);
 const emit = defineEmits(["update:email"]);
 const email = ref("");
+const isValid = ref(null);
 
 const emailHandler = async (event) => {
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   email.value = event.target.value;
+  console.log(emailRegex.test(email.value));
+  if (emailRegex.test(email.value)) {
+    isValid.value = true;
+  } else {
+    isValid.value = false;
+  }
   if (isValid) {
     emit("update:email", email.value);
   }
 };
 
-let isValid = computed(() => {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
-});
+// let isValid = computed(() => {
+//   return ;
+// });
 </script>
 
 <template>
