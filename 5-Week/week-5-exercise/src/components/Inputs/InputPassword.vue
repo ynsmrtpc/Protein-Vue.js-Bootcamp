@@ -7,20 +7,6 @@ const password = ref("");
 const showPassword = ref(false);
 const isValid = ref(null);
 
-// function validatePassword() {
-//   const validationRegex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-//   if (
-//     password.value.length > 8 &&
-//     /\d/.test(password.value) === true &&
-//     /\[A-Z]/.test(password.value) === true &&
-//     validationRegex.test(password.value) === true
-//   ) {
-//     isValid.value = true;
-//   } else {
-//     isValid.value = false;
-//   }
-// }
-
 const passwordHandler = (event) => {
   password.value = event.target.value;
   const validationRegex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
