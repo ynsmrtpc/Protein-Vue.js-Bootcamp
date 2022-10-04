@@ -17,7 +17,7 @@ body {
 }
 .form {
   position: relative;
-  margin-top: 10rem;
+  margin-top: 5rem;
   text-align: center;
   padding: 1rem;
   border-radius: 1rem;
@@ -114,7 +114,8 @@ body {
 
 .github {
   position: absolute;
-  top: 95%;
+  bottom: 0;
+  left: 5px;
   text-decoration: none;
   color: #fafafa;
   text-shadow: #000000 3px 3px 5px;
