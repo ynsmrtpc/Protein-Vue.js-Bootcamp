@@ -7,6 +7,8 @@ import InputName from "../Inputs/InputName.vue";
 import InputPassword from "../Inputs/InputPassword.vue";
 import InputPhone from "../Inputs/InputPhone.vue";
 import ChangeMode from "../Buttons/ChangeMode.vue";
+import NotificationsList from "../Notification/NotificationList.vue";
+import { toast } from "../Notification/Toastify";
 
 const props = defineProps(["showLogin"]);
 const emit = defineEmits(["update:showLogin"]);
@@ -16,9 +18,8 @@ const email = ref("");
 const phone = ref("");
 const password = ref("");
 const confirmPassword = ref("");
-const isSuccess = ref(false); // hata ya da başarı mesajını gösterip gizlemek için
-const loginSituation = ref(""); // ekrana hata ya da başarı mesajı yazmak için
 const pageMode = ref("");
+const notifications = ref([]);
 
 // register form'daki bilgileri kontrol eder ve son validasyon işlemlerini yapar(diğer validasyon işlemleri ilgili componentlerin içinde yapılmıştır)
 // eğer bilgiler doğruysa localstorage'a verileri yazar
@@ -35,20 +36,40 @@ const registerHandler = () => {
   data.password.push(password.value);
 
   if (fullName.value === "" || phone.value === "" || email.value === "" || password.value === "") {
-    isSuccess.value = true;
-    loginSituation.value = "Tüm alanları doldurmalısınız!";
+    notifications.value.push(
+      toast("Tüm alanları doldurmalısınız", {
+        position: "top-left",
+        background: "red",
+        barActive: true,
+        barBackground: "#fafafa",
+        icon: "😒",
+        duration: 3000,
+      })
+    );
   } else if (password.value !== confirmPassword.value) {
-    isSuccess.value = true;
-    loginSituation.value = "Parolalar eşleşmiyor!";
+    notifications.value.push(
+      toast("Parolalar eşleşmiyor", {
+        position: "top-left",
+        background: " #b9b924c7",
+        barActive: true,
+        barBackground: "#343434",
+        icon: "🫣",
+        duration: 3000,
+      })
+    );
   } else {
     localStorage.setItem("userDetails", JSON.stringify(data));
-    loginSituation.value = "Kayıt Oluşturuldu!";
-    isSuccess.value = true;
+    notifications.value.push(
+      toast("Kayıt Başarılı", {
+        position: "top-left",
+        background: "green",
+        barActive: true,
+        barBackground: "#fafafa",
+        icon: "👍",
+        duration: 3000,
+      })
+    );
   }
-  setTimeout(() => {
-    isSuccess.value = false;
-    loginSituation.value = "";
-  }, 2000);
 };
 
 const buttonHandler = () => {
@@ -57,14 +78,13 @@ const buttonHandler = () => {
 </script>
 
 <template>
+  <Teleport to="#notification">
+    <NotificationsList :notifications="notifications"></NotificationsList>
+  </Teleport>
   <form class="form" @submit.prevent="registerHandler" :class="' ' + pageMode">
     <ChangeMode v-model:mode="pageMode" />
 
     <h1 class="form__headline">Register</h1>
-
-    <div v-if="isSuccess" class="form__loginSituation">
-      {{ loginSituation }}
-    </div>
 
     <InputName v-model:name="fullName" />
     <InputEmail v-model:email="email" />

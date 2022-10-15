@@ -21,7 +21,8 @@ const passwordHandler = (event) => {
   } else {
     isValid.value = false;
   }
-  if (isValid) {
+
+  if (isValid.value) {
     emit("update:password", password.value);
   }
 };

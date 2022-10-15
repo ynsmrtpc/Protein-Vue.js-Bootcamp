@@ -17,7 +17,7 @@ function validatePhone() {
 
 const phoneHandler = (event) => {
   phone.value = event.target.value;
-  if (isValid) {
+  if (isValid.value) {
     emit("update:phone", phone.value);
   }
 };
