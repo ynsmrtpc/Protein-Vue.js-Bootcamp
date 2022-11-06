@@ -12,6 +12,12 @@ const showDropdown = ref(false);
             <SidebarItem name="Home" link=""></SidebarItem>
           </li>
           <li class="navlist__item">
+            <SidebarItem name="event" link="weeks"></SidebarItem>
+          </li>
+          <li class="navlist__item">
+            <SidebarItem name="picture_as_pdf" link="documents"></SidebarItem>
+          </li>
+          <!-- <li class="navlist__item">
             <div class="dropdown" @click="showDropdown = !showDropdown">
               <a><span class="material-symbols-outlined"> event</span></a>
               <div class="dropdown__content" v-if="showDropdown">
@@ -24,12 +30,7 @@ const showDropdown = ref(false);
                 ></SidebarItem>
               </div>
             </div>
-          </li>
-        </ul>
-        <ul class="navlist">
-          <li class="navlist__item">
-            <SidebarItem name="picture_as_pdf" link="documents"></SidebarItem>
-          </li>
+          </li> -->
         </ul>
       </nav>
     </aside>

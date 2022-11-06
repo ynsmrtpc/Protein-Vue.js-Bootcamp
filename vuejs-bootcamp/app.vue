@@ -5,6 +5,5 @@
         <NuxtPage />
       </div>
     </NuxtLayout>
-    <hr />
   </div>
 </template>
