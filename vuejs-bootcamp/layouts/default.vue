@@ -1,6 +1,8 @@
 <template>
   <div>
     <Sidebar />
-    <slot />
+    <div class="wrapper">
+      <slot />
+    </div>
   </div>
 </template>

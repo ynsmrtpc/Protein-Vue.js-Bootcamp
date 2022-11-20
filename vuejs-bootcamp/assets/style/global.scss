@@ -5,21 +5,27 @@
   padding: 0;
 }
 
-html,
-body {
-  height: 100%;
-  margin: -0.1rem 0 0 0;
-  padding: 0;
+html {
+  min-height: 100%;
+  margin: 0.1rem 0 0 0;
   background: linear-gradient(-45deg, #312450, #31245087, #31245000);
   background-size: 1400% 1400%;
   animation: gradient 15s ease infinite;
+  overflow-x: hidden;
 }
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
+  25% {
+    background-position: 75% 50%;
+  }
   50% {
-    background-position: 100% 50%;
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 25% 50%;
   }
   100% {
     background-position: 0% 50%;

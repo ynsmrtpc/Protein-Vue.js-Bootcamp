@@ -41,7 +41,7 @@ const showDropdown = ref(false);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 .sidebar {
   position: fixed;
-  width: 15vw;
+  width: 10vw;
   height: 100vh;
   background: #312450;
   font-size: 0.65em;

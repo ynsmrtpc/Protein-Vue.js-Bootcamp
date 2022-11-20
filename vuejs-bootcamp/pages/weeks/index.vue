@@ -34,6 +34,6 @@ const colors = [
   row-gap: 1rem;
   justify-content: space-between;
   width: 75vw;
-  margin: 2rem 0 0 3rem;
+  margin: 2rem 0;
 }
 </style>
